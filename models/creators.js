@@ -1,2 +1,16 @@
 //to code for the creators
-console.log("hello");
+const mongoose= require("mongoose");
+const creator=mongoose.Schema({
+    creatorName:{
+        type:String,
+        require:true
+    },
+    description:{
+    type:String,
+    require: true
+    }
+
+})
+
+
+module.exports = mongoose.model ("creatorTable" , creator);
