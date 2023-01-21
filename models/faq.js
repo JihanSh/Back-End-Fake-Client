@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const FAQSchema = mongoose.Schema({
   questions: {
     type: String,
-    require: true,
+    required: true,
   },
   answers: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 module.exports = mongoose.model("FAQ", FAQSchema);
