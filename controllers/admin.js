@@ -22,6 +22,7 @@ const handelErrors = (err) => {
   }
   return errors;
 }
+
 //for login
 module.exports.login_get = (req, res) => {
   res.send("login")
