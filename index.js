@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const connection = require("./config/db");
 const express = require("express");
 const app = express();
+const faRoutes = require("./routes/faq");
 mongoose.set("strictQuery", true);
-
 
 connection();
 
