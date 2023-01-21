@@ -9,6 +9,14 @@ class Controller {
       res.status(200).send({ success: true, response });
     });
   }
+  // requesting to view a question by it's id
+  get(req, res) {
+    let id = req.params;
+    faq.findOne({ _id, id }, (err, response) => {
+      if (err) return next(err);
+      res.status(200).send({ success: true, response });
+    });
+  }
   // creating new question
   post(req, res, next) {
     let quest = req.quest;
