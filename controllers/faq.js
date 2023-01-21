@@ -12,7 +12,7 @@ class Controller {
   // requesting to view a question and its answer by  id
   get(req, res) {
     let id = req.params;
-    faq.findOne({ _id, id }, (err, response) => {
+    faq.findOne({  id }, (err, response) => {
       if (err) return next(err);
       res.status(200).send({ success: true, response });
     });
