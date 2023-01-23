@@ -33,7 +33,15 @@ const setCreator = asyncHandler(async (req, res) => {
 // @access Private
 
 const updateCreator = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Update Creator ${req.params.id}` });
+  const theCreator = await Creator.findById(req.params.id)
+  if(!theCreator){
+    res.status(400)
+    throw new Error('Update creator is not found')
+  }
+  const updatedCreator = await theCreator.findByIdAndUpdate(req.params.id , req.body,{
+    new: true,
+  })
+  res.status(200).json(updateCreator);
 });
 
 //@desc Delete Creator
@@ -41,8 +49,18 @@ const updateCreator = asyncHandler(async (req, res) => {
 // @access Private
 
 const deleteCreator = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Delete Creator ${req.params.id}` });
-});
+  const theCreator = await theCreator.findById(req.params.id)
+   
+  if(!goal) {
+    res.status(400)
+    throw new Error ('Delete goal not found')
+
+  }
+  await goal.remove()
+
+  res.status(200).json({ id: req.params.id })
+  
+})
 
 module.exports = {
   getCreator,
