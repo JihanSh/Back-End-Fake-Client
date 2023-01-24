@@ -1,6 +1,11 @@
 //to code for the NFT Collection
 const express = require('express');
+const multer = require('multer');
 const nfts = require('../models/nft-collection.js');
+
+const fs = require('fs');
+const upload= require('../middleware/nft-collection')
+const cloudinary = require('../config/cloudinary.js');
 
 
 
@@ -25,7 +30,7 @@ const nfts = require('../models/nft-collection.js');
 // @access Private
 
 const postNfts=async(req,res)=>{
-    
+    // console.log("req ",req.file)
     if(!req.body){
 
         // console.log("hello")
@@ -33,6 +38,9 @@ const postNfts=async(req,res)=>{
         
     }
     else{
+        let uploaded_img = await cloudinary.uploader.upload(req.file.path);
+        // console.log("uploaded images ",uploaded_img) 
+      
         const postNftss=await nfts.create(
             {
             
@@ -40,15 +48,14 @@ const postNfts=async(req,res)=>{
         nftName:req.body.nftName,
         currentBid:req.body.currentBid,
         category:req.body.category,
-            })
-             
-    //    console.log("hi")
-       res.status(200).json(postNfts)
+        image: uploaded_img.url   
+      
     
     
-    }
+             } )
+             res.status(200).json(postNftss)
 
-}
+}}
 
 //updating specific info from the name
 // /updatenft/:id
@@ -86,6 +93,8 @@ const deleteNft=async(req,res)=>{
     }
 
 }
+
+
 
 
   

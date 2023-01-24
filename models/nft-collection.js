@@ -3,21 +3,21 @@ const mongoose=require ("mongoose");
 
 const nftsCollection=mongoose.Schema({
     designerName:{
-        type:String,
-        require:true
+        type:String
     },
     nftName:{
-        type:String,
-        require:true
+        type:String
     },
     currentBid:{
-        type:Number,
-        require:true
+        type:Number
     },
     category:{
         type:String,
-        require:true
+        
     },
+    image:{
+        type:String
+    }
 },
     {
     timestamps: true,
