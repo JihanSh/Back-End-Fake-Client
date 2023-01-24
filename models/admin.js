@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt')
 
 const AdminSchema = new mongoose.Schema({
-
   username: {
     type: String,
     required: [true, 'Please enter an Username'],
@@ -14,7 +13,7 @@ const AdminSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Please enter an Password'],
-  },
+  }
 })
 
 
@@ -26,6 +25,6 @@ AdminSchema.pre('save', async function (next) {
   next();
 });
 
-const Admin = mongoose.model("Admin", AdminSchema);
+const Admin = mongoose.model("admin", AdminSchema);
 
 module.exports = Admin;
