@@ -3,9 +3,22 @@ const express = require('express');
 const multer = require('multer');
 const nfts = require('../models/nft-collection.js');
 
-const fs = require('fs');
-const upload= require('../middleware/nft-collection')
-const cloudinary = require('../config/cloudinary.js');
+// const fs = require('fs');
+// const upload= require('../middleware/nft-collection')
+// const cloudinary = require('../config/cloudinary.js');
+
+const storage=multer.diskStorage({
+    destination:"uploads",
+    filename:(req,file,cb)=>{
+        cb(null,file.originalname);
+
+}
+
+}
+)
+const upload=multer({
+    storage:storage
+})
 
 
 
@@ -33,13 +46,13 @@ const postNfts=async(req,res)=>{
     // console.log("req ",req.file)
     if(!req.body){
 
-        // console.log("hello")
+        
         res.status(400).json({message:"Error"})
         
     }
     else{
-        let uploaded_img = await cloudinary.uploader.upload(req.file.path);
-        // console.log("uploaded images ",uploaded_img) 
+        // let uploaded_img = await cloudinary.uploader.upload(req.file.path);
+        
       
         const postNftss=await nfts.create(
             {
@@ -48,7 +61,11 @@ const postNfts=async(req,res)=>{
         nftName:req.body.nftName,
         currentBid:req.body.currentBid,
         category:req.body.category,
-        image: uploaded_img.url   
+        // uploaded_img.url  
+        image: {
+            data:req.file.filename,
+            contentType:"image.jpg" || "image.png" || "image.svg" || "image.jpeg" ,
+        }
       
     
     
@@ -65,16 +82,27 @@ const updateNfts=async(req,res)=>{
 
     const nftUpdate= await nfts.findById(req.params.id);
     if(!nftUpdate){
-        // console.log("eror in update")
+       
         res.status(400)
     }
     else{
-        // console.log("done update")
-        const updatedNfts= await nfts.findByIdAndUpdate(req.params.id,req.body,
+        
+        /*const updatedNfts= await nftUpdate.findByIdAndUpdate(req.params.id,req.body,
             {
                 new:true,
-            })
-            res.status(200).json(updatedNfts);
+            })*/
+            nftUpdate.designerName=req.body.designerName,
+            nftUpdate.nftName=req.body.nftName,
+            nftUpdate.currentBid=req.body.currentBid,
+            nftUpdate.category=req.body.category
+            // uploaded_img.url  
+             nftUpdate.image={
+                 data:req.file.filename,
+                 contentType:"image.jpg" || "image.png" || "image.svg" || "image.jpeg" ,
+             }
+            const u1=await nftUpdate.save()
+          
+            res.status(200).json(u1);
     }
 }
 
@@ -102,5 +130,6 @@ module.exports = {
     getNfts,
     postNfts,
     updateNfts,
-    deleteNft
+    deleteNft,
+    upload
 }

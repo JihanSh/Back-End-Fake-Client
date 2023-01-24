@@ -16,7 +16,8 @@ const nftsCollection=mongoose.Schema({
         
     },
     image:{
-        type:String
+        data:Buffer,
+        contentType:String
     }
 },
     {
