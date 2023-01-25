@@ -10,15 +10,15 @@ const {upload}=require("../controllers/nft-collection")
 const {find}=require("../controllers/nft-collection")
 
 //get nfts
-router.get("/getnft",getNfts)
+router.get("/nfts",getNfts)
 
 
 //set nfts
-router.post("/postnft",upload.single("nftImage"),postNfts)
+router.post("/nfts",upload.single("nftImage"),postNfts)
 
 //update nfts
-router.put("/updatenft/:id",upload.single("nftImage"),updateNfts)
+router.put("/nfts/:id",upload.single("nftImage"),updateNfts)
 
 //delete nfts
-router.delete("/deletenft/:id",deleteNft)
+router.delete("/nfts/:id",deleteNft)
 module.exports=router;

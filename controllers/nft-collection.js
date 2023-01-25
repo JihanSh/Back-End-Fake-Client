@@ -2,6 +2,8 @@
 const express = require('express');
 const multer = require('multer');
 const nfts = require('../models/nft-collection.js');
+const fs = require('fs');
+const path = require('path');
 
 // const fs = require('fs');
 // const upload= require('../middleware/nft-collection')
@@ -53,7 +55,7 @@ const postNfts=async(req,res)=>{
     else{
         // let uploaded_img = await cloudinary.uploader.upload(req.file.path);
         
-      
+        
         const postNftss=await nfts.create(
             {
             
@@ -63,7 +65,7 @@ const postNfts=async(req,res)=>{
         category:req.body.category,
         // uploaded_img.url  
         image: {
-            data:req.file.filename,
+            data:req.file.path,
             contentType:"image.jpg" || "image.png" || "image.svg" || "image.jpeg" ,
         }
       
@@ -97,7 +99,7 @@ const updateNfts=async(req,res)=>{
             nftUpdate.category=req.body.category
             // uploaded_img.url  
              nftUpdate.image={
-                 data:req.file.filename,
+                 data:req.file.path,
                  contentType:"image.jpg" || "image.png" || "image.svg" || "image.jpeg" ,
              }
             const u1=await nftUpdate.save()
