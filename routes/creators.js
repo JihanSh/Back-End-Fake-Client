@@ -4,11 +4,13 @@ const {getCreator} = require('../controllers/creators')
 const {setCreator} = require('../controllers/creators')
 const {updateCreator} = require('../controllers/creators')
 const {deleteCreator} = require('../controllers/creators')
+const multer = require("multer");
+const {uploadss}=require("../controllers/creators.js")
 
 
 router.get("/", getCreator)
  
-router.post("/",setCreator)
+router.post("/",uploadss.single("creatorimg"),uploadss.single("bckgrndimg"),setCreator)
 
 router.put("/:id",updateCreator)
 

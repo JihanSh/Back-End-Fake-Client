@@ -11,6 +11,14 @@ const creatorSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a description value"],
     },
+    creatorimg:{
+      data:String,
+      contentType:String
+    },
+    bckgrndimg:{
+      data:String,
+      contentType:String
+    }
   },
   {
     timestamps: true,

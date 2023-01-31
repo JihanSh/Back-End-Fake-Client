@@ -1,17 +1,16 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
+const connection = require("./config/db");
 const express = require("express");
-
-const dotenv = require("dotenv").config();
-const { errorHandler } = require("./middleware/creators");
-const connectDB = require("./config/db");
-const port = process.env.PORT || 8080;
-
-connectDB();
-
 const app = express();
+mongoose.set("strictQuery", true);
+const creators = require("./routes/creators.js");
+const multer = require("multer");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+connection();
+app.use("/creator", creators);
+const conn = mongoose.connection;
+// app.use("/api/creators", require("./routes/creators"));
 
-app.use("/api/creators", require("./routes/creators"));
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const port = process.env.PORT || 8080;
+app.listen(port, console.log(`Listening on port ${port}`));
