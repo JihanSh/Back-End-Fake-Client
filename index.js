@@ -4,8 +4,9 @@ const connection = require("./config/db");
 const express = require("express");
 const app = express();
 const AdminRoute = require("./routes/admin")
+const cors = require('cors')
 mongoose.set("strictQuery", true);
-
+app.use(cors());
 
 connection();
 
