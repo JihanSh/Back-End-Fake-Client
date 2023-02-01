@@ -7,7 +7,7 @@ const {postNfts}=require("../controllers/nft-collection.js");
 const {updateNfts}=require("../controllers/nft-collection.js")
 const {deleteNft}=require("../controllers/nft-collection.js")
 const {upload}=require("../controllers/nft-collection")
-const {find}=require("../controllers/nft-collection")
+// const {find}=require("../controllers/nft-collection")
 
 //get nfts
 router.get("/nfts",getNfts)

@@ -13,6 +13,7 @@ const nftsCollection=mongoose.Schema({
     },
     category:{
         type:String,
+        enum:["art", "sport", "photography", "pattern"]
         
     },
     image:{
