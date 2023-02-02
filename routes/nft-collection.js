@@ -1,3 +1,5 @@
+
+//to code for the NFT Collectin
 //to code for the NFT Collection
 const express = require('express');
 const multer = require('multer');
@@ -22,3 +24,4 @@ router.put("/nfts/:id",upload.single("nftImage"),updateNfts)
 //delete nfts
 router.delete("/nfts/:id",deleteNft)
 module.exports=router;
+
