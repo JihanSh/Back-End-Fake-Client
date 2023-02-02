@@ -29,7 +29,7 @@ filename: function(req, file, cb) {
 }
 });
 
-const upload = multer({
+const uploadss = multer({
   storage: storage
 });
 
@@ -111,5 +111,5 @@ module.exports = {
   setCreator,
   updateCreator,
   deleteCreator,
-  upload,
+  uploadss,
 };
