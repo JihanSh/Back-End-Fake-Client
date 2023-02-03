@@ -4,6 +4,7 @@ const connection = require("./config/db");
 const express = require("express");
 const app = express();
 const AdminRoute = require("./routes/admin")
+const nftRoute=require("./routes/nft-collection")
 const cors = require('cors')
 mongoose.set("strictQuery", true);
 app.use(cors());
@@ -11,9 +12,9 @@ app.use(cors());
 connection();
 
 app.use(express.json());
-
+app.use(express.urlencoded({extended:false}));
 app.use(AdminRoute);
-
+app.use("/nft",nftRoute);
 const conn = mongoose.connection;
 
 const port = process.env.PORT || 8080;
