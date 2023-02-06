@@ -96,19 +96,15 @@ const updateNfts = async (req, res) => {
     }
     else {
 
-        /*const updatedNfts= await nftUpdate.findByIdAndUpdate(req.params.id,req.body,
-            {
-                new:true,
-            })*/
+        
         nftUpdate.designerName = req.body.designerName,
             nftUpdate.nftName = req.body.nftName,
             nftUpdate.currentBid = req.body.currentBid,
             nftUpdate.category = req.body.category
-        // uploaded_img.url  
-        nftUpdate.image = {
-            data: req.file.path,
-            // contentType: "image.jpg" || "image.png" || "image.svg" || "image.jpeg",
-        }
+          
+             nftUpdate.image =req.file.path
+           
+        
         const u1 = await nftUpdate.save()
 
         res.status(200).json(u1);
