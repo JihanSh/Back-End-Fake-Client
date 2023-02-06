@@ -11,15 +11,13 @@ const nftsCollection=mongoose.Schema({
     currentBid:{
         type:Number
     },
-    category:{
-        type:String,
-        enum:["art", "sport", "photography", "pattern"]
+     category:{
+         type:String,
+        //   enum:["art", "sport", "photography", "pattern"]
         
-    },
-    image:{
-        data:String,
-        contentType:String
-    }
+     },
+      image:String,
+   
 },
     {
     timestamps: true,
