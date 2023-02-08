@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const AdminRoute = require("./routes/admin")
 const nftRoute=require("./routes/nft-collection")
+const creatorRoute=require("./routes/creators")
 const cors = require('cors');
 const { upload } = require("./controllers/nft-collection");
 const path=require ('path');
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(AdminRoute);
 app.use("/nft",nftRoute);
+app.use("/creators",creatorRoute);
 app.use("/nft/nfts/uploads",express.static('uploads'));
 const conn = mongoose.connection;
 

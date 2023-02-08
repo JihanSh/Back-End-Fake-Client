@@ -102,7 +102,7 @@ const updateNfts = async (req, res) => {
             nftUpdate.currentBid = req.body.currentBid,
             nftUpdate.category = req.body.category
           
-             nftUpdate.image =req.file.path
+            //  nftUpdate.image =req.file.path
            
         
         const u1 = await nftUpdate.save()
