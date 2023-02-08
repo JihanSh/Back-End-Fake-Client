@@ -21,16 +21,19 @@ const { error } = require("console");
 // });
 
 const storage = multer.diskStorage({
-destination: function(req, file, cb) {
-  cb(null, "./uploadss");
-},
-filename: function(req, file, cb) {
-  cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-}
+  destination: function (req, file, cb) {
+    cb(null, "./uploadss");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
 });
 
 const uploadss = multer({
-  storage: storage
+  storage: storage,
 });
 
 const getCreator = asyncHandler(async (req, res) => {
@@ -51,7 +54,7 @@ const setCreator = asyncHandler(async (req, res) => {
     throw new Error("Please add a set creator");
   }
 
-  console.log("ALOOOO ",req.files.creatorimg[0].path)
+  console.log("ALOOOO ", req.files.creatorimg[0].path);
 
   const theCreator = await Creator.create({
     creatorName: req.body.creatorName,
@@ -61,10 +64,10 @@ const setCreator = asyncHandler(async (req, res) => {
       contentType: "image.jpg" || "image.png" || "image.svg" || "image.jpeg",
     },
 
-     bckgrndimg: {
-       data: req.files.bckgrndimg[0].path,
+    bckgrndimg: {
+      data: req.files.bckgrndimg[0].path,
       contentType: "image.jpg" || "image.png" || "image.svg" || "image.jpeg",
-     },
+    },
   });
 
   res.status(200).json(theCreator);

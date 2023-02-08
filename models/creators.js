@@ -1,5 +1,6 @@
 //to code for the creators
 const mongoose = require("mongoose");
+
 const creatorSchema = mongoose.Schema(
   {
     creatorName: {
@@ -11,14 +12,14 @@ const creatorSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a description value"],
     },
-    creatorimg:{
-      data:String,
-      contentType:String
+    creatorimg: {
+      data: String,
+      contentType: String,
     },
-    bckgrndimg:{
-      data:String,
-      contentType:String
-    }
+    bckgrndimg: {
+      data: String,
+      contentType: String,
+    },
   },
   {
     timestamps: true,

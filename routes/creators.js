@@ -5,8 +5,11 @@ const { setCreator } = require("../controllers/creators");
 const { updateCreator } = require("../controllers/creators");
 const { deleteCreator } = require("../controllers/creators");
 const multer = require("multer");
+const cors = require("cors");
+var app = express();
 const { uploadss } = require("../controllers/creators.js");
 
+app.use(cors());
 router.get("/", getCreator);
 
 router.post(
@@ -21,4 +24,5 @@ router.post(
 router.put("/:id", updateCreator);
 
 router.delete("/:id", deleteCreator);
+// module.exports = router;
 module.exports = router;
