@@ -27,5 +27,6 @@ router.put("/nfts/:id",upload.single("nftImage"),updateNfts)
 
 //delete nfts
 router.delete("/nfts/:id",deleteNft)
+
 module.exports=router;
 

@@ -22,6 +22,7 @@ app.use(AdminRoute);
 app.use("/nft",nftRoute);
 app.use("/creators",creatorRoute);
 app.use("/nft/nfts/uploads",express.static('uploads'));
+app.use("/creators/uploadss",express.static('uploadss'))
 const conn = mongoose.connection;
 
 const port = process.env.PORT || 8080;
