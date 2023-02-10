@@ -89,13 +89,13 @@ const updateCreator = asyncHandler(async (req, res) => {
 // @access Private
 
 const deleteCreator = asyncHandler(async (req, res) => {
-  const theCreator = await theCreator.findById(req.params.id);
+  const theCreator = await Creator.findById(req.params.id);
 
-  if (!goal) {
+  if (!theCreator) {
     res.status(400);
     throw new Error("Delete goal not found");
   }
-  await goal.remove();
+  await theCreator.remove();
 
   res.status(200).json({ id: req.params.id });
 });
