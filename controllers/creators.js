@@ -56,15 +56,9 @@ const setCreator = asyncHandler(async (req, res) => {
   const theCreator = await Creator.create({
     creatorName: req.body.creatorName,
     description: req.body.description,
-    creatorimg: {
-      data: req.files.creatorimg[0].path,
-      contentType: "image.jpg" || "image.png" || "image.svg" || "image.jpeg",
-    },
-
-     bckgrndimg: {
-       data: req.files.bckgrndimg[0].path,
-      contentType: "image.jpg" || "image.png" || "image.svg" || "image.jpeg",
-     },
+    creatorimg:  req.files.creatorimg[0].path,
+   bckgrndimg: req.files.bckgrndimg[0].path,
+     
   });
 
   res.status(200).json(theCreator);
